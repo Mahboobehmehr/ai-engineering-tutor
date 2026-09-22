@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="ایجنت مدرس خصوصی: آموزش کتاب AI Engineering (Chip Huyen) در ۲۲ درس فارسی، برای مخاطب غیرفنی.">
+<style>
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;font-size:14px}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<title>مدرس کتاب AI Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --paper:#EDEFF3;
+    --surface:#FFFFFF;
+    --surface-2:#F5F7FA;
+    --ink:#101C2E;
+    --ink-soft:#42505F;
+    --ink-faint:#7A8797;
+    --line:#D6DBE3;
+    --line-soft:#E4E8EE;
+    --accent:#B4702A;
+    --accent-soft:#F3E4D2;
+    --sage:#3F6F62;
+    --sage-soft:#DFEBE7;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0C141E;
+      --surface:#121C28;
+      --surface-2:#18232F;
+      --ink:#E8EDF3;
+      --ink-soft:#AEBAC7;
+      --ink-faint:#7C8B9B;
+      --line:#27333F;
+      --line-soft:#1E2A36;
+      --accent:#E3A55C;
+      --accent-soft:#2A2016;
+      --sage:#7FB8A6;
+      --sage-soft:#16261F;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0C141E;
+    --surface:#121C28;
+    --surface-2:#18232F;
+    --ink:#E8EDF3;
+    --ink-soft:#AEBAC7;
+    --ink-faint:#7C8B9B;
+    --line:#27333F;
+    --line-soft:#1E2A36;
+    --accent:#E3A55C;
+    --accent-soft:#2A2016;
+    --sage:#7FB8A6;
+    --sage-soft:#16261F;
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    direction:rtl;
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Vazirmatn","Segoe UI",Tahoma,sans-serif;
+    font-weight:400;
+    font-size:16px;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding-inline:20px;
+    padding-block:0 72px;
+  }
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .en{font-family:"IBM Plex Mono",ui-monospace,monospace;direction:ltr;unicode-bidi:isolate;font-size:.9em}
+
+  /* ---------- masthead ---------- */
+  header.top{
+    border-bottom:1px solid var(--line);
+    padding-block:44px 34px;
+  }
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+  h1{
+    font-size:clamp(30px,6vw,46px);
+    font-weight:800;
+    line-height:1.3;
+    letter-spacing:-.01em;
+    margin:0 0 16px;
+    text-wrap:balance;
+  }
+  .lede{
+    font-size:clamp(16px,2.4vw,19px);
+    color:var(--ink-soft);
+    font-weight:300;
+    margin:0;
+    max-width:60ch;
+  }
+  .meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 10px;
+    margin-top:26px;
+  }
+  .chip{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11.5px;
+    letter-spacing:.03em;
+    padding:5px 11px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    color:var(--ink-soft);
+    background:var(--surface);
+    white-space:nowrap;
+  }
+
+  /* ---------- sections ---------- */
+  section{padding-block:44px;border-bottom:1px solid var(--line-soft)}
+  section:last-of-type{border-bottom:0}
+  h2{
+    font-size:13px;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-weight:500;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 22px;
+  }
+  h3{
+    font-size:20px;
+    font-weight:800;
+    margin:0 0 10px;
+    line-height:1.5;
+    text-wrap:balance;
+  }
+  p{margin:0 0 14px;max-width:64ch}
+  p:last-child{margin-bottom:0}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .duo .box{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:22px 22px 24px;
+  }
+  .duo .box.solution{border-color:var(--accent);background:var(--surface)}
+  .boxlabel{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin:0 0 10px;
+  }
+  .duo .box.solution .boxlabel{color:var(--accent)}
+  .duo p{font-size:15px;color:var(--ink-soft)}
+
+  /* ---------- flow ---------- */
+  ol.flow{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+  ol.flow li{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:18px;
+    align-items:start;
+    background:var(--surface);
+    border:1px solid var(--line-soft);
+    padding:16px 18px;
+  }
+  ol.flow li:first-child{border-radius:4px 4px 0 0}
+  ol.flow li:last-child{border-radius:0 0 4px 4px}
+  ol.flow .step{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12px;
+    color:var(--accent);
+    padding-top:4px;
+    font-variant-numeric:tabular-nums;
+  }
+  ol.flow strong{display:block;font-weight:600;font-size:15.5px;margin-bottom:2px}
+  ol.flow span.desc{font-size:14.5px;color:var(--ink-soft);line-height:1.75}
+
+  /* ---------- anatomy ---------- */
+  .anatomy{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .part{
+    border-top:2px solid var(--sage);
+    background:var(--surface);
+    padding:14px 15px 16px;
+  }
+  .part .n{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px;color:var(--sage);letter-spacing:.08em;
+  }
+  .part b{display:block;font-size:15px;font-weight:600;margin:4px 0 4px}
+  .part span{font-size:13.5px;color:var(--ink-soft);line-height:1.7}
+
+  /* ---------- curriculum ---------- */
+  .phase{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:20px;
+    padding-block:16px;
+    border-bottom:1px dashed var(--line);
+  }
+  .phase:last-child{border-bottom:0}
+  .phase .ph-title{font-weight:600;font-size:15px;line-height:1.6}
+  .phase .ph-src{
+    display:block;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px;color:var(--ink-faint);margin-top:2px;
+  }
+  ul.lessons{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+  ul.lessons li{
+    display:grid;grid-template-columns:auto 1fr;gap:12px;
+    font-size:14.5px;color:var(--ink-soft);line-height:1.7;
+  }
+  ul.lessons .num{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12px;color:var(--ink-faint);padding-top:3px;
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* ---------- sample ---------- */
+  .sample{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .sample .head{
+    background:var(--surface-2);
+    border-bottom:1px solid var(--line);
+    padding:14px 20px;
+    display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline;
+  }
+  .sample .head b{font-size:16px;font-weight:800}
+  .sample .head .src{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;color:var(--ink-faint)}
+  .sample .body{padding:20px}
+  .sample h4{
+    font-size:12px;font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
+    margin:22px 0 8px;
+  }
+  .sample h4:first-child{margin-top:0}
+  .sample p{font-size:15px;color:var(--ink-soft)}
+  .tablewrap{overflow-x:auto}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:320px}
+  th,td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line-soft)}
+  th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
+  td:first-child{width:38%;font-family:"IBM Plex Mono",ui-monospace,monospace;direction:ltr;text-align:left;font-size:13px;color:var(--ink)}
+  td:last-child{color:var(--ink-soft)}
+  .task{
+    margin-top:20px;
+    background:var(--accent-soft);
+    border-radius:4px;
+    padding:14px 16px;
+    font-size:14.5px;
+    color:var(--ink);
+  }
+  .task b{font-weight:600}
+
+  /* ---------- adapt ---------- */
+  .adapt{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .adapt .card{
+    background:var(--surface);
+    border:1px solid var(--line-soft);
+    border-radius:4px;
+    padding:18px;
+  }
+  .adapt .card b{display:block;font-size:15.5px;font-weight:600;margin-bottom:6px}
+  .adapt .card span{font-size:14px;color:var(--ink-soft);line-height:1.75}
+
+  /* ---------- cta ---------- */
+  .cta{
+    margin-top:52px;
+    border:1px solid var(--accent);
+    border-radius:4px;
+    background:var(--surface);
+    padding:30px 26px;
+    text-align:center;
+  }
+  .cta h3{font-size:22px;margin-bottom:10px}
+  .cta p{margin:0 auto;color:var(--ink-soft);font-size:15.5px;max-width:52ch}
+  .sign{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid var(--line-soft);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--ink-faint);
+  }
+  .sign b{display:block;font-family:"Vazirmatn",sans-serif;font-size:16px;letter-spacing:0;color:var(--ink);margin-bottom:4px;font-weight:600}
+
+  @media (max-width:760px){
+    .duo,.anatomy,.adapt{grid-template-columns:1fr}
+    .phase{grid-template-columns:1fr;gap:10px}
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <p class="eyebrow">نمونه‌کار · ایجنت اختصاصی</p>
+    <h1>یک مدرس خصوصی که فقط یک کتاب را درس می‌دهد — به یک نفر</h1>
+    <p class="lede">
+      ایجنتی که کتاب فنی <span class="en">AI Engineering</span> (اثر Chip Huyen) را برای یک مدیر بازرگانی بدون پیش‌زمینه‌ی مهندسی،
+      به فارسی و در ۲۲ درس آموزش می‌دهد؛ هر مفهوم را به پروژه‌های واقعی خودِ او وصل می‌کند و برای هر جلسه یک جزوه‌ی ماندگار می‌سازد.
+    </p>
+    <div class="meta">
+      <span class="chip">۲۲ درس · ۱۰ فصل</span>
+      <span class="chip">فارسی + اصطلاح انگلیسی</span>
+      <span class="chip">حافظه‌ی پیشرفت بین جلسات</span>
+      <span class="chip">بدون کد · سطح مبتدی</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>مسئله و راه‌حل</h2>
+    <div class="duo">
+      <div class="box">
+        <p class="boxlabel">مسئله</p>
+        <h3>کتاب درست است، مخاطبش نه</h3>
+        <p>
+          کتاب‌های مرجع فنی برای مهندس‌ها نوشته می‌شوند. مدیری که باید درباره‌ی هوش مصنوعی تصمیم بگیرد
+          نه وقت خواندن ۵۰۰ صفحه را دارد، نه پیش‌زمینه‌ی ریاضی آن را. خلاصه‌های اینترنتی هم کلی‌اند و
+          به کار و کسب‌وکار او ربطی ندارند.
+        </p>
+      </div>
+      <div class="box solution">
+        <p class="boxlabel">راه‌حل</p>
+        <h3>یک مدرس که شاگردش را می‌شناسد</h3>
+        <p>
+          ایجنت، سطح دانش، زبان، ریتم و پروژه‌های شاگرد را از پیش می‌داند. هر جلسه را در همان اندازه‌ای
+          می‌دهد که خوانده شود، هر مفهوم را با مثالی از کارِ خودِ او توضیح می‌دهد، و می‌داند جلسه‌ی قبل
+          کجا تمام شده است.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>چطور کار می‌کند</h2>
+    <ol class="flow">
+      <li>
+        <span class="step">۰۱</span>
+        <span><strong>شاگرد درس را صدا می‌زند</strong><span class="desc">بدون زمان‌بندی اجباری. هر وقت وقت داشت می‌گوید «درس بعدی» — روی موبایل یا دسکتاپ.</span></span>
+      </li>
+      <li>
+        <span class="step">۰۲</span>
+        <span><strong>ایجنت پرونده‌ی پیشرفت را می‌خواند</strong><span class="desc">آخرین درس تمام‌شده، سطح، زبان و ترجیحات آموزشی از حافظه‌ی دائمی خوانده می‌شود.</span></span>
+      </li>
+      <li>
+        <span class="step">۰۳</span>
+        <span><strong>درس ساخته و ارائه می‌شود</strong><span class="desc">در قالب ثابت شش‌بخشی، با مثالی از پروژه‌های واقعی شاگرد و جدول واژه‌های انگلیسی همان درس.</span></span>
+      </li>
+      <li>
+        <span class="step">۰۴</span>
+        <span><strong>جزوه تحویل و پیشرفت ثبت می‌شود</strong><span class="desc">جزوه‌ی قابل ذخیره برای مرور بعدی، و شماره‌ی درس در حافظه به‌روز می‌شود تا جلسه‌ی بعد از همان‌جا ادامه یابد.</span></span>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>آناتومی یک جلسه</h2>
+    <div class="anatomy">
+      <div class="part"><span class="n">۰۱</span><b>قلاب</b><span>عنوان درس، فصل مرجع، و یک جمله که چرا این درس به کار شاگرد می‌آید.</span></div>
+      <div class="part"><span class="n">۰۲</span><b>مفهوم</b><span>دو تا چهار ایده‌ی کلیدی، هرکدام با یک تشبیه روزمره. بدون فرمول، بدون کد.</span></div>
+      <div class="part"><span class="n">۰۳</span><b>مثال کاربردی</b><span>همان مفهوم، پیاده‌شده روی یکی از پروژه‌های واقعی شاگرد.</span></div>
+      <div class="part"><span class="n">۰۴</span><b>جدول واژه‌ها</b><span>اصطلاحات انگلیسی همان درس با معادل ساده‌ی فارسی — برای دنبال‌کردن منابع اصلی.</span></div>
+      <div class="part"><span class="n">۰۵</span><b>تمرین اختیاری</b><span>یک کار ۵ تا ۱۰ دقیقه‌ای روی پروژه‌ی خودش، نه سؤال امتحانی.</span></div>
+      <div class="part"><span class="n">۰۶</span><b>پیش‌نمایش</b><span>یک جمله از درس بعد، تا رشته‌ی دوره پاره نشود.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>نقشه‌ی دوره</h2>
+    <div class="phase">
+      <div><div class="ph-title">فاز ۱ — زمین بازی</div><span class="ph-src">chapter 1</span></div>
+      <ul class="lessons">
+        <li><span class="num">۰۱</span><span>AI Engineering یعنی چه و چرا حالا؟</span></li>
+        <li><span class="num">۰۲</span><span>Foundation Model چیست و چه کارهایی از آن برمی‌آید</span></li>
+        <li><span class="num">۰۳</span><span>از ایده تا اپلیکیشن: انتخاب و ارزیابی یک کاربرد</span></li>
+        <li><span class="num">۰۴</span><span>لایه‌های کار: AI Engineering Stack</span></li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div><div class="ph-title">فاز ۲ — داخل مدل چه می‌گذرد</div><span class="ph-src">chapter 2</span></div>
+      <ul class="lessons">
+        <li><span class="num">۰۵</span><span>داده‌ی آموزش: مدل از کجا یاد می‌گیرد و چرا سوگیری دارد</span></li>
+        <li><span class="num">۰۶</span><span>معماری و اندازه‌ی مدل: transformer، پارامتر، scaling</span></li>
+        <li><span class="num">۰۷</span><span>Post-training: چرا مدل مؤدب و پیرو دستور می‌شود</span></li>
+        <li><span class="num">۰۸</span><span>Sampling: چرا جواب‌ها فرق می‌کنند و ریشه‌ی hallucination</span></li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div><div class="ph-title">فاز ۳ — ارزیابی</div><span class="ph-src">chapters 3–4</span></div>
+      <ul class="lessons">
+        <li><span class="num">۰۹</span><span>چرا سنجیدن مدل‌ها سخت است + معیارهای زبانی</span></li>
+        <li><span class="num">۱۰</span><span>روش‌های ارزیابی، از exact evaluation تا AI as a judge</span></li>
+        <li><span class="num">۱۱</span><span>معیارهای انتخاب مدل: کیفیت، هزینه، سرعت، open یا proprietary</span></li>
+        <li><span class="num">۱۲</span><span>ساختن خط ارزیابی برای اپلیکیشن خودت</span></li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div><div class="ph-title">فاز ۴ — ساختن اپلیکیشن</div><span class="ph-src">chapters 5–6</span></div>
+      <ul class="lessons">
+        <li><span class="num">۱۳</span><span>پرامپت‌نویسی: چرا کار می‌کند و مدل چه می‌بیند</span></li>
+        <li><span class="num">۱۴</span><span>بهترین شیوه‌های نوشتن پرامپت</span></li>
+        <li><span class="num">۱۵</span><span>امنیت پرامپت: prompt injection و دفاع در برابرش</span></li>
+        <li><span class="num">۱۶</span><span>RAG: چطور اسناد خودت را به مدل بدهی</span></li>
+        <li><span class="num">۱۷</span><span>Agents و Memory: مدلی که ابزار به کار می‌گیرد</span></li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div><div class="ph-title">فاز ۵ — سفارشی‌سازی و تولید</div><span class="ph-src">chapters 7–10</span></div>
+      <ul class="lessons">
+        <li><span class="num">۱۸</span><span>Fine-tuning: کی لازم است، کی نه، و چه هزینه‌ای دارد</span></li>
+        <li><span class="num">۱۹</span><span>Dataset engineering: کیوریشن، داده‌ی مصنوعی، پردازش</span></li>
+        <li><span class="num">۲۰</span><span>Inference optimization: سرعت، تأخیر و هزینه</span></li>
+        <li><span class="num">۲۱</span><span>معماری نهایی یک سیستم AI و بازخورد کاربر</span></li>
+        <li><span class="num">۲۲</span><span>جمع‌بندی: نقشه‌ی راه شخصی برای پروژه‌های خودت</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>نمونه‌ی واقعی خروجی</h2>
+    <div class="sample">
+      <div class="head">
+        <b>درس ۱۶ — RAG: چطور اسناد خودت را به مدل بدهی</b>
+        <span class="src">chapter 6 · RAG</span>
+      </div>
+      <div class="body">
+        <h4>مفهوم</h4>
+        <p>
+          مدل زبانی مثل کارشناسی است که همه‌چیز خوانده جز پرونده‌های شرکت شما. RAG یعنی درست قبل از اینکه
+          سؤال را به او بدهید، مرتبط‌ترین صفحه‌های پرونده را هم جلوی دستش بگذارید. مدل عوض نمی‌شود؛
+          چیزی که «می‌بیند» عوض می‌شود.
+        </p>
+        <p>
+          برای اینکه سیستم بداند کدام صفحه مرتبط است، متن‌ها به بردارهای عددی (<span class="en">embedding</span>)
+          تبدیل می‌شوند — یعنی هر تکه متن جایی روی یک نقشه‌ی معنایی می‌نشیند و جمله‌های هم‌معنا کنار هم قرار می‌گیرند.
+        </p>
+
+        <h4>مثال روی پروژه‌ی خودت</h4>
+        <p>
+          چت‌بات صادراتی سایت: اگر کل آیین‌نامه‌ی گمرک را داخل پرامپت بگذاری، هم گران می‌شود هم مدل گیج.
+          با RAG، اسناد را به تکه‌های ۳۰۰ تا ۵۰۰ کلمه‌ای می‌شکنی؛ وقتی کاربر می‌پرسد «برای صادرات دارو به عراق
+          چه مجوزی لازم است؟» سیستم سه تکه‌ی مرتبط را پیدا می‌کند و فقط همان‌ها را همراه سؤال به مدل می‌دهد.
+          نتیجه: جواب مستند، ارزان‌تر، و قابل ارجاع به منبع.
+        </p>
+
+        <h4>واژه‌های این درس</h4>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>اصطلاح</th><th>معنی ساده</th></tr></thead>
+            <tbody>
+              <tr><td>retrieval</td><td>پیدا کردن تکه‌های مرتبط از میان اسناد شما</td></tr>
+              <tr><td>chunking</td><td>شکستن سند بلند به تکه‌های قابل‌جست‌وجو</td></tr>
+              <tr><td>embedding</td><td>تبدیل متن به عدد، تا شباهت معنایی قابل محاسبه شود</td></tr>
+              <tr><td>context window</td><td>حجم متنی که مدل در یک نوبت می‌تواند ببیند</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="task">
+          <b>تمرین اختیاری (۱۰ دقیقه):</b> سه سندی را که بیشترین سؤال مشتری‌ها درباره‌شان است فهرست کن
+          و بنویس هرکدام را به چند تکه می‌شکستی. همین فهرست، ورودی اول یک سیستم RAG است.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>همین الگو، برای کسب‌وکار شما</h2>
+    <div class="adapt">
+      <div class="card"><b>آموزش کارکنان تازه‌وارد</b><span>به‌جای یک کتاب، دستورالعمل‌ها و فرایندهای داخلی شما؛ هر کارمند با ریتم خودش پیش می‌رود و مدیر پیشرفت را می‌بیند.</span></div>
+      <div class="card"><b>آموزش محصول به مشتری</b><span>مدرسی که محصول شما را در جلسه‌های کوتاه به مشتری یاد می‌دهد — به زبان خودش و با مثال از صنعت خودش.</span></div>
+      <div class="card"><b>دوره‌ی تخصصی برند شما</b><span>هر دانش تخصصی که دارید (مقررات، فنی، فروش) به یک دوره‌ی ساختارمند با جزوه و پیگیری پیشرفت تبدیل می‌شود.</span></div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h3>ایجنت اختصاصی، برای دانش اختصاصی شما</h3>
+    <p>
+      این نمونه در یک جلسه طراحی و ساخته شد: تعریف شاگرد، ساختار دوره، قالب ثابت جلسه، و حافظه‌ی پیشرفت.
+      همین ساختار روی محتوای شما هم قابل ساخت است.
+    </p>
+    <div class="sign">
+      <b>مهبوبه مهربان</b>
+      طراحی و ساخت ایجنت‌های هوش مصنوعی
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
